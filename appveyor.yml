@@ -1,0 +1,43 @@
+version: 1.0.{build}
+environment:
+  ASPNETCORE_ENVIRONMENT: appveyor
+  COVERALLS_REPO_TOKEN:
+    secure: Aib0dt/M2yLE5OAyHD33ENZU7MbUhDdGpVf/WDd+ECgOV7TEBrPN3tiMfqZrvCAj
+pull_requests:
+  do_not_increment_build_number: true
+branches:
+  only:
+  - master
+image: Visual Studio 2019
+configuration: Release
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}'
+  package_version: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
+install:
+  - dotnet tool install --global coveralls.net
+services:
+  - mssql2017
+nuget:
+  disable_publish_on_pr: false
+before_build:
+- cmd: dotnet restore
+build:
+  publish_nuget: true
+  publish_nuget_symbols: false
+  verbosity: normal
+test_script:
+  - dotnet test --configuration Release /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:Exclude="[*Samples*]*" /p:CoverletOutput=TestResults/
+after_test:
+  - csmacnz.coveralls --useRelativePaths --multiple --input "opencover=tests\Sprocket.IntegrationTests\TestResults\coverage.opencover.xml;opencover=tests\Sprocket.UnitTests\TestResults\coverage.opencover.xml"
+artifacts:
+- path: '**\*.nupkg'
+  name: NuGet
+deploy:
+- provider: Environment
+  name: NuGet
+  skip_symbols: true
