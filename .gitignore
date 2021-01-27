@@ -341,3 +341,5 @@ ASALocalRun/
 healthchecksdb
 /console/Sprocket.ConsoleApp/Context
 /console/Sprocket.ConsoleApp/Entities
+/console/EntityGenerator.ConsoleApp/Context
+/console/EntityGenerator.ConsoleApp/Entities
