@@ -10,7 +10,7 @@
   </PropertyGroup>-->
 
   <ItemGroup>
-    <PackageReference Include="FluentCommander" Version="1.0.119" />
+    <PackageReference Include="FluentCommander" Version="1.0.141" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.6.0-3.20207.2" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.0.0-beta2.final" PrivateAssets="all" />
   </ItemGroup>
