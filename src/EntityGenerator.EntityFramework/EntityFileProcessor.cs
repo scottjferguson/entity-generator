@@ -102,11 +102,14 @@ namespace Sprocket.EntityFramework
                     if (fileLine.Contains("new HashSet<"))
                     {
                         // Parse the old values from the line
-                        string oldTypeName = fileLine.Trim().Split(" ")[0];
+                        string oldTypeNameRaw = fileLine.Trim().Split(" ")[0];
+                        string oldTypeName = oldTypeNameRaw.EndsWith("es") 
+                            ? oldTypeNameRaw.TrimEnd('s').TrimEnd('e')
+                            : oldTypeNameRaw.TrimEnd('s');
 
                         //if (!_entityTypeNameDictionary.TryGetValue(oldTypeName, out string newTypeName))
                         //{
-                        //    Console.WriteLine($"Could not update property type for HastSet. Could not find matching type name reference in _entityTypeNameDictionary for type name {oldTypeName}");
+                        //    Console.WriteLine($"Could not update property type for HashSet. Could not find matching type name reference in _entityTypeNameDictionary for type name {oldTypeName}");
                         //    continue;
                         //}
 

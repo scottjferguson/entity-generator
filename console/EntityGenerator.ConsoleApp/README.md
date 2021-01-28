@@ -19,11 +19,11 @@ Tools > Command Line > Developer Command Prompt
 
 #### Guroo
 
-dotnet ef dbcontext scaffold "Data Source=guroo-server-dev.database.windows.net;Initial Catalog=Guroo;User ID=GurooAppService;Password={{DatabasePasswordGurooDev}};Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;" Microsoft.EntityFrameworkCore.SqlServer --namespace Domain.Entity --project console\EntityGenerator.ConsoleApp --context-dir Context --output-dir Entities --no-build --force
+dotnet ef dbcontext scaffold "Data Source=guroo-server-dev.database.windows.net;Initial Catalog=Guroo;User ID=GurooAppService;Password={{DatabasePasswordGurooDev}};Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;" Microsoft.EntityFrameworkCore.SqlServer --namespace Domain.Entities --project console\EntityGenerator.ConsoleApp --context-dir Context --output-dir Entities --no-build --force
 
 #### Other Databases
 
-dotnet ef dbcontext scaffold "{{ConnectionString}}" Microsoft.EntityFrameworkCore.SqlServer --namespace Domain.Entity --project console\EntityGenerator.ConsoleApp --context-dir Context --output-dir Entities --no-build --force
+dotnet ef dbcontext scaffold "{{ConnectionString}}" Microsoft.EntityFrameworkCore.SqlServer --namespace Domain.Entities --project console\EntityGenerator.ConsoleApp --context-dir Context --output-dir Entities --no-build --force
 
 (if you get an error about updating EF Core tools, run this: dotnet tool update --global dotnet-ef)
 
